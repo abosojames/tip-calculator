@@ -1,0 +1,157 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+    <style>
+    .Section1{
+        border: 1px solid #000000;
+        margin-left: 50px;
+        width: 500px;
+        height: 500px;
+
+    }
+
+    span{
+        color: red;
+    }
+    .header1{
+        border: 1px solid #000000;
+        text-align: center;
+        width: 500px;
+        height: 50px;
+        background-color: black;
+        color: white;
+
+    }
+    .art1{
+
+      padding-left: 20px;
+    }
+
+    .tb1{
+        height: 50px;
+        width: 400px
+    }
+
+    .button1{
+        margin-top: 20px;
+        margin-left: 60px;
+        background-color: brown;
+        color: white;
+        height: 50;
+        width: 300;
+        size: 20px;
+    }
+    </style>
+
+    <script>
+        function send(){
+            var bill = billAmount();
+            var pascent = getPercent();
+            var numPPl = numOfPP();
+   
+                if (bill != false && pascent != false && numPPl != false){
+                var cal = ((pascent/100) * bill)/numPPl;
+                alert("the tip for each of us at " + bill+" dollar bill is "+ cal);
+                }
+
+                else{
+                    return false
+                }
+        }
+            
+    
+    function billAmount(){
+    var bill = document.getElementById("tb1").value;
+    if (bill == ""){
+        document.getElementById("error1").innerHTML = "no amount for bill"
+        return false;
+    }else{
+        document.getElementById("error1").innerHTML = "";
+        return bill;
+    }
+    }
+
+    function numOfPP (){
+
+        var ppl = document.getElementById("tb2").value;
+        if (ppl ==""){
+           document.getElementById("error3").innerHTML = "what no of ppl?"
+            return false;
+        }
+        else{
+            document.getElementById("error3").innerHTML = "";
+            return ppl;
+        }
+    }
+
+    function getPercent(){
+        var cent = "";
+        var len = document.formtip.pacent.length;
+        var i;
+        for (i =0; i<len; i++){
+           if(document.formtip.pacent[i].selected){
+               cent = document.formtip.pacent[i].value;
+               break;
+           }      
+    }
+    if (cent == ""){
+                    document.getElementById("error2").innerHTML = "no percent selected"
+                    return false;
+                }
+                else{
+                    document.getElementById("error2").innerHTML = "";
+                    return cent;
+
+                }
+    }
+    
+
+
+    </script>
+
+
+</head>
+<body>
+<form name="formtip">
+<section class="section1">
+
+<header class="header1"> <h1> TIP CALCULATOR</h1></header>
+<article class="art1">
+    <h4>How Much was Your Bill Payment</h4>
+<label for="tb1">$</label>
+<input type="text" placeholder="Bill Amount" id="tb1" class="tb1">
+<P></P>
+<span id="error1"></span>
+<H4>How was your Service?</H4>
+
+<select id="pacent">
+    <option value="">--Choose an Option--</option>
+    <option value="10">10%</option>
+    <option value="15">15%</option>
+    <option value="20">20%</option>
+
+</select>
+<span id="error2"></span>
+
+<h4>how many people are sharing the bill?</h4>
+<input type="text" placeholder="number of people" id="tb2">
+<label for="tb2">People</label>
+<span id="error3"></span>
+<p>
+
+<input type="button" value="CALCULATE" onclick="send()" class="button1" size="">
+
+
+</article>
+
+</section>
+</form>
+
+
+</body>
+</html>
